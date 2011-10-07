@@ -9,9 +9,15 @@ $(document).ready(function(){
 
     var enableLog = true;
 
+    /* Development */
     var URL_BASE = 'http://localhost/~mike/xkcd/'
     var PATH_SEP = '.'
     var FILE_NAME = 'info.0.json'
+
+    /* Deployment
+    var URL_BASE = 'http://xkcd.com/'
+    var PATH_SEP = '/'
+    var FILE_NAME = 'info.0.json' */
 
     function log(txt)
     {
