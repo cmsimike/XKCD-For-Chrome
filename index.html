@@ -1,0 +1,22 @@
+<!DOCTYPE html> <!-- The new doctype -->
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/jquery-1.6.4.min.js"></script>
+        <script src="js/jquery-ui-1.8.16.custom.min.js"></script>
+        <script src="js/localstoragedb.js"></script>
+        <script src="js/jquery.tmpl.min.js"></script>
+
+        <script id="comicTemplate" type="text/x-jquery-tmpl"> 
+            <li><b>${num}</b> (${safe_title})</li>
+        </script>
+
+
+        <script src="js/script.js"></script>
+    </head>
+
+    <body>
+        <div id="loading">Loading...</div>
+        <div id="comics"></div>
+    </body>
+</html>

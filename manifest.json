@@ -1,0 +1,18 @@
+{
+  "name": "XKCD For Chrome",
+  "version": "0.0.1",
+  "description": "Easily view XKCD from Google Chrome..",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "index.html"
+  },
+
+  "permissions": [
+    "http://xkcd.com/",
+    "http://localhost/~mike/"
+  ]
+
+  //"icons":{
+  //  "128":"icon_128.png"
+  //}
+}
