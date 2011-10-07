@@ -1,4 +1,4 @@
-/*$(document).ready(function(){
+$(document).ready(function(){
     // Initialise. If the database doesn't exist, it is created
     var SQL = new localStorageDB("xkcd");
 
@@ -9,7 +9,7 @@
 
     var enableLog = true;
 
-    /* Development
+    /* Development */
     var URL_BASE = 'http://localhost/~mike/xkcd/'
     var PATH_SEP = '.'
     var FILE_NAME = 'info.0.json'
@@ -17,7 +17,7 @@
     /* Deployment
     var URL_BASE = 'http://xkcd.com/'
     var PATH_SEP = '/'
-    var FILE_NAME = 'info.0.json' 
+    var FILE_NAME = 'info.0.json' */
 
     function log(txt)
     {
@@ -34,7 +34,7 @@
         {
             log('Creating database');
             // create the "books" table
-            SQL.createTable("comic", ["id", "img", "title", "month", "link", "year", "news", "safe_title", "transcript", "alt", "day", "new"]);
+            SQL.createTable("comic", ["num", "img", "title", "month", "link", "year", "news", "safe_title", "transcript", "alt", "day", "new"]);
             
             // commit the database to localStorage
             SQL.commit();
@@ -58,10 +58,11 @@
 
     function loadNewComics()
     {
-        //
         $.getJSON('http://xkcd.com/info.0.json', function(data) 
         {
-            for(var i = 1; i <=data.num; i++)
+            countNew = 0;
+            //for(var i = 1; i <= data.num; i++)
+            for(var i = 1; i <= 20; i++)
             {
                 $.ajax({
                     url: getJSONUrl(i),
@@ -70,53 +71,24 @@
                     async: false,
                     success: function(data) 
                     {
-                        $( "#comicTemplate" ).tmpl( data ).appendTo( "#comics" );
+                        data.new = true;
+                        countNew++;
+                        SQL.insert("comic", data);
+                        SQL.commit();
+                        log(""+ data.num + " added to the database");
                     }
                 });
             }
+            chrome.browserAction.setBadgeText({text:""+countNew});
         });
-        chrome.browserAction.setBadgeText({text:'901'});
     }
 
     function init()
     {
-        //initDatabase();
-        clearDatabase();
+        //clearDatabase();
+        initDatabase();
         loadNewComics();
     }
 
     init();
-});*/
-
-$(document).ready(function(){
-    // Initialise. If the database doesn't exist, it is created
-    var SQL = new localStorageDB("xkcd");
-
-    //Store references to the elements
-
-    var LOADING = $('loading');
-    var COMICS  = $('comics');
-
-    var enableLog = true;
-
-    function log(txt)
-    {
-        if(enableLog)
-        {
-            console.log(txt);   
-        }
-    }
-
-    function load()
-    {
-        result = SQL.query("comic");
-        for(i = 0; i < result.length; i++)
-        {
-            log("building: " + result[i].num);
-            $( "#comicTemplate" ).tmpl( result[i] ).appendTo( "#comics" );    
-        }
-        
-    }
-
-    load();
 });

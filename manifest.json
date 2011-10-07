@@ -1,18 +1,21 @@
 {
   "name": "XKCD For Chrome",
   "version": "0.0.1",
-  "description": "Easily view XKCD from Google Chrome..",
+  "description": "Easily view XKCD from Google Chrome.",
+  "background_page": "background.html",
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "img/48icon.png",
     "popup": "index.html"
   },
 
   "permissions": [
     "http://xkcd.com/",
     "http://localhost/~mike/"
-  ]
+  ],
 
-  //"icons":{
-  //  "128":"icon_128.png"
-  //}
+"icons": { 
+  "16": "img/16icon.png",
+  "48": "img/48icon.png",
+  "128": "img/128icon.png" 
+  }
 }
