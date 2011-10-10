@@ -70,10 +70,15 @@ h1,h2{
 }
 
 #loading{
-	display:none;
+	
 }
 
 #comics{
-	/*display:none;*/
+	display:none;
+	min-width:500px;
+}
+
+#comic{
+	display:none;
 	min-width:500px;
 }

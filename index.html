@@ -7,8 +7,8 @@
         <script src="js/localstoragedb.js"></script>
         <script src="js/jquery.tmpl.min.js"></script>
 
-        <script id="comicTemplate" type="text/x-jquery-tmpl"> 
-            <li><b>${num}</b> (${safe_title})</li>
+        <script id="comicTemplate" type="text/x-jquery-tmpl">
+            <span data-id=${num} class="comic-load">${safe_title}</span>
         </script>
         <script src="js/script.js"></script>
     </head>
@@ -16,5 +16,6 @@
     <body>
         <div id="loading">Loading...</div>
         <div id="comics"></div>
+        <div id="comic"></div>
     </body>
 </html>
