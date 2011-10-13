@@ -4,9 +4,9 @@ $(document).ready(function(){
 
     //Store references to the elements
 
-    var LOADING = $('loading');
-    var COMICS  = $('comics');
-    var COMIC   = $('comic');
+    var LOADING = $('#loading');
+    var COMICS  = $('#comics');
+    var COMIC   = $('#comic');
 
     var enableLog = true;
 
@@ -18,6 +18,28 @@ $(document).ready(function(){
         }
     }
 
+    function showComicList()
+    {
+        LOADING.hide();
+        COMIC.hide();
+        COMICS.show();
+    }
+
+    function showComic()
+    {
+        LOADING.hide();
+        COMIC.hide();
+        COMICS.show();
+    }
+
+    function clearDatabase()
+    {
+        log('database row before: ' + SQL.rowCount("comic"));
+        SQL.drop();
+        log('database row after: ' + SQL.rowCount("comic"));
+
+    }
+
     function load()
     {
         result = SQL.query("comic");
@@ -26,9 +48,10 @@ $(document).ready(function(){
             log("building: " + result[i].num);
             $( "#comicTemplate" ).tmpl( result[i] ).appendTo( "#comics" );    
         }
-        LOADING.hide();
-        COMICS.show();
+        showComicList();
+        $('#delete').click(new function(){
+            clearDatabase();
+        });
     }
-
     load();
 });

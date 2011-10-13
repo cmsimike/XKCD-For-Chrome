@@ -8,14 +8,15 @@
         <script src="js/jquery.tmpl.min.js"></script>
 
         <script id="comicTemplate" type="text/x-jquery-tmpl">
-            <span data-id=${num} class="comic-load">${safe_title}</span>
+            <div><span data-id=${num} class="comic-load">${safe_title}</span></div>
         </script>
-        <script src="js/script.js"></script>
     </head>
 
     <body>
         <div id="loading">Loading...</div>
         <div id="comics"></div>
         <div id="comic"></div>
+        <div><span id="delete"> Click to Delete </span></div>
+        <script src="js/script.js"></script>
     </body>
 </html>
